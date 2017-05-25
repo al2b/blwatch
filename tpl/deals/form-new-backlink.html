@@ -1,0 +1,19 @@
+<form action="create_backlink.php" method="POST">
+  Vous pouvez ajouter de nouveaux backlinks pour le contact : <?php echo $deal["identity"]["firstname"] . " " . $deal["identity"]["lastname"] ; ?> <br>
+
+  <input type="hidden" name="id" value="<?php echo $deal["id"];?>"
+  <label for="date">date</label>
+  <input type="text" name="backlink[date]" id="date">
+  <br>
+
+  <label for="url">url</label>
+  <input type="text" name="backlink[url]" id="url">
+  <br>
+
+  <label for="target">target</label>
+  <input type="text" name="backlink[target]" id="target">
+  <br>
+
+  <input type="submit">
+
+</form>
