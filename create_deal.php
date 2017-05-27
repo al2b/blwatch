@@ -14,7 +14,7 @@ require("lib/deals.php");?>
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
-
+                  <H1>Maintenant, vous pouvez ajouter un backlink</h1>
 <?php if (array_key_exists("identity", $_REQUEST)) {
 
   $deal = create_deal_from_request($_REQUEST);

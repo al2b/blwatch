@@ -21,19 +21,7 @@ $identities = list_deals_identities();
                 <div class="row">
                     <div class="col-lg-12">
                         <h1>Choisissez votre contact et ajoutez un backlink:</h1>
-                        <form action="new_backlink.php" method="post">
-                        <div class="form-group">
-                          <label for="contact">Liste contacts :</label>
-                          <select class="form-control" name="id">
-                            <?php
-                            foreach($identities as $identity) {?>
-
-                              <option value='<?= $identity["id"] ?>'><?php echo htmlspecialchars($identity["lastname"] ." " .  $identity["firstname"]) ; ?> </option>
-                              <?php
-                            }?>
-                          </select>
-                          <p><input type="submit" value="Valider"></p>
-</form>
+                        <?php include('tpl/deals/form-add-backlinks.html');?>
                     </div>
                 </div>
             </div>

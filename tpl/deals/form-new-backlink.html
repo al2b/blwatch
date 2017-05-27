@@ -3,15 +3,15 @@
 
   <input type="hidden" name="id" value="<?php echo $deal["id"];?>"
   <label for="date">date</label>
-  <input type="text" name="backlink[date]" id="date">
+  <input type="date" name="backlink[date]" id="date" required>
   <br>
 
   <label for="url">url</label>
-  <input type="text" name="backlink[url]" id="url">
+  <input type="url" name="backlink[url]" id="url" required>
   <br>
 
   <label for="target">target</label>
-  <input type="text" name="backlink[target]" id="target">
+  <input type="url" name="backlink[target]" id="target" required>
   <br>
 
   <input type="submit">

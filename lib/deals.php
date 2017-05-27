@@ -22,12 +22,12 @@ function deal_get_next_id() {
 function create_deal_from_request($request) {
   $id = deal_get_next_id();
   $identity = array(
-    "firstname" => $request["identity"]["firstname"],
-    "lastname" => $request["identity"]["lastname"],
-    "email" => $request["identity"]["email"],
+    "firstname" => htmlspecialchars($request["identity"]["firstname"]),
+    "lastname" => htmlspecialchars($request["identity"]["lastname"]),
+    "email" => htmlspecialchars($request["identity"]["email"]),
   );
   $backlinks = array() ;
-  return array("id" => $id, "identity" => $identity, "backlinks" => $backlinks);
+  return array("id" => $id, "identity" => fix_deal_identity($identity), "backlinks" => $backlinks);
 }
 
 function deal_by_id(string $id) {
@@ -44,6 +44,17 @@ function deal_id(array $deal): string {
 
 function deal_by_file(string $filename) {
   return unserialize( file_get_contents($filename) );
+}
+
+/**
+ * Fix $identity of $deal object
+ * Returns array
+ */
+
+function fix_deal_identity(array $identity) {
+  $identity["firstname"] = ucfirst(strtolower($identity["firstname"])) ;
+  $identity["lastname"] = ucfirst(strtolower($identity["lastname"])) ;
+  return $identity ;
 }
 
 /**

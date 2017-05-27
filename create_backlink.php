@@ -4,9 +4,9 @@ require("lib/deals.php");
 
 // créer un backlink
   // récupérer info du formulaire : date, url, target
-$date = $_REQUEST["backlink"]["date"] ;
-$url =  $_REQUEST["backlink"]["url"] ;
-$target =  $_REQUEST["backlink"]["target"] ;
+$date =  htmlspecialchars($_REQUEST["backlink"]["date"]) ;
+$url =  htmlspecialchars($_REQUEST["backlink"]["url"]) ;
+$target =  htmlspecialchars($_REQUEST["backlink"]["target"]) ;
 
   // créer mon objet backlink
 $backlink = array("date" => $date, "url" => $url, "target" => $target) ;
