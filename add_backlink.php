@@ -21,7 +21,7 @@ $identities = list_deals_identities();
                 <div class="row">
                     <div class="col-lg-12">
                         <h1>Choisissez votre contact et ajoutez un backlink:</h1>
-                        <?php include('tpl/deals/form-add-backlinks.html');?>
+                        <?php include('tpl/deals/form-pick-id-for-bl.html');?>
                     </div>
                 </div>
             </div>

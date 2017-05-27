@@ -15,11 +15,9 @@ $backlink = array("date" => $date, "url" => $url, "target" => $target) ;
   // récupèrer un Deal
   $deal = deal_by_id($_REQUEST['id']);
   // ajouter aux backlinks existants
-deal_add_backlink($deal, $backlink) ;
-
-// sauvegarder les modifs
-
-write_deal($deal) ;?>
+  deal_add_backlink($deal, $backlink) ;
+  // sauvegarder les modifs
+  write_deal($deal) ;?>
 
 <!DOCTYPE html>
 <html lang="fr">
