@@ -50,7 +50,6 @@ function deal_by_file(string $filename) {
  * Fix $identity of $deal object
  * Returns array
  */
-
 function fix_deal_identity(array $identity) {
   $identity["firstname"] = ucfirst(strtolower($identity["firstname"])) ;
   $identity["lastname"] = ucfirst(strtolower($identity["lastname"])) ;
@@ -83,6 +82,7 @@ function deal_with_new_backlink($deal, $backlink) {
 function deal_add_backlink(&$deal, $backlink) {
   $deal["backlinks"][] = $backlink ;
 }
+
 function list_deal_files() {
   return glob(DEALS_FILE_ROOT."*.php_serialized");
 }
@@ -104,4 +104,12 @@ function list_deals_identities() {
     $identities[] = $identity;
   }
   return $identities;
+}
+
+function somme_deal($deal): float {
+  $somme = 0 ;
+  foreach($deal["backlinks"] as $backlink) {
+    $somme += $backlink["price"] ;
+  }
+  return $somme ;
 }

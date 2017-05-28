@@ -1,1 +1,0 @@
-a:3:{s:2:"id";i:20;s:8:"identity";a:3:{s:9:"firstname";s:6:"donald";s:8:"lastname";s:4:"duck";s:5:"email";s:6:"donald";}s:9:"backlinks";a:2:{i:0;a:3:{s:4:"date";s:10:"2017-05-27";s:3:"url";s:20:"http://www.google.fr";s:6:"target";s:20:"http://www.google.fr";}i:1;a:3:{s:4:"date";s:10:"2017-05-27";s:3:"url";s:20:"http://www.google.fr";s:6:"target";s:20:"http://www.google.fr";}}}

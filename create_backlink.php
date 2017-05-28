@@ -7,9 +7,9 @@ require("lib/deals.php");
 $date =  htmlspecialchars($_REQUEST["backlink"]["date"]) ;
 $url =  htmlspecialchars($_REQUEST["backlink"]["url"]) ;
 $target =  htmlspecialchars($_REQUEST["backlink"]["target"]) ;
-
+$price =  htmlspecialchars(floatval($_REQUEST["backlink"]["price"])) ;
   // créer mon objet backlink
-$backlink = array("date" => $date, "url" => $url, "target" => $target) ;
+$backlink = array("date" => $date, "url" => $url, "target" => $target, "price" => $price) ;
 
 // ajouter le backlink à mon Deal
   // récupèrer un Deal
@@ -42,7 +42,8 @@ $backlink = array("date" => $date, "url" => $url, "target" => $target) ;
                               <tr>
                                 <th>Date</th>
                                 <th>URL</th>
-                                <th>Target</th>
+                                <th>Cible</th>
+                                <th>Prix</th>
                                 </tr>
                               </thead>
                               <tbody>
@@ -51,11 +52,12 @@ $backlink = array("date" => $date, "url" => $url, "target" => $target) ;
                                     <td><?php echo $backlink["date"]; ?></td>
                                     <td><?php echo $backlink["url"]; ?></td>
                                     <td><?php echo $backlink["target"]; ?></td>
+                                    <td><?php echo $backlink["price"]; ?></td>
                                   </tr>
                                 </tbody>
                                 <?php } ?>
                               </table>
-
+                            <p> Total du coût des backlinks pour ce deal : <?php echo $somme = somme_deal($deal) ?> euros</p>
                           <?php  include('tpl/deals/form-new-backlink.html') ;?>
                         </div>
                     </div>
