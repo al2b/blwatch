@@ -2,6 +2,12 @@
 
 const DEALS_FILE_ROOT = "data/deals/" ;
 const DEAL_ID_FILENAME = DEALS_FILE_ROOT."current_deal_id.txt";
+const ERROR_MAIL = "mail naze";
+const ERROR_LASTNAME = "lastname naze";
+const ERROR_FIRSTNAME = "firstname naze";
+const ERROR_URL_TARGET = "URL target naze" ;
+const ERROR_URL = "URL  naze" ;
+
 
 function deal_get_next_id() {
   $fp = fopen(DEAL_ID_FILENAME, "c+");
@@ -19,15 +25,53 @@ function deal_get_next_id() {
   return $id;
 }
 
+function check_identity_error_from_request(array $request) {
+  $errors = array() ;
+  if (array_key_exists("identity", $_REQUEST)) {
+    if (filter_var($_REQUEST["identity"]["email"], FILTER_VALIDATE_EMAIL) == false) {
+         $errors["mail"] = ERROR_MAIL ;
+      }
+    if (ctype_alpha($_REQUEST["identity"]["firstname"]) !== true) {
+        $errors["firstname"] = ERROR_LASTNAME ;
+      }
+    if (ctype_alpha($_REQUEST["identity"]["lastname"]) !== true) {
+      $errors["lastname"] = ERROR_FIRSTNAME ;
+    }
+  } ;
+  return $errors ;
+}
+
+function check_backlink_error_from_request(array $request) {
+  $errors = array() ;
+  if (array_key_exists("backlink", $_REQUEST)) {
+    if (filter_var($_REQUEST["backlink"]["target"], FILTER_VALIDATE_URL) == false) {
+         $errors["target"] = ERROR_URL_TARGET ;
+      }
+    if (filter_var($_REQUEST["backlink"]["url"], FILTER_VALIDATE_URL) == false) {
+        $errors["url"] = ERROR_URL ;
+      }
+  } ;
+  return $errors ;
+}
+
 function create_deal_from_request($request) {
   $id = deal_get_next_id();
   $identity = array(
-    "firstname" => htmlspecialchars($request["identity"]["firstname"]),
-    "lastname" => htmlspecialchars($request["identity"]["lastname"]),
-    "email" => htmlspecialchars($request["identity"]["email"]),
+    "firstname" => ($request["identity"]["firstname"]),
+    "lastname" => ($request["identity"]["lastname"]),
+    "email" => ($request["identity"]["email"]),
   );
   $backlinks = array() ;
   return array("id" => $id, "identity" => fix_deal_identity($identity), "backlinks" => $backlinks);
+}
+
+function create_backlink_from_request($request) {
+  $date =  ($_REQUEST["backlink"]["date"]) ;
+  $url =  ($_REQUEST["backlink"]["url"]) ;
+  $target = ($_REQUEST["backlink"]["target"]) ;
+  $price = ($_REQUEST["backlink"]["price"]) ;
+  $backlink = array("date" => $date, "url" => $url, "target" => $target, "price" => $price) ;
+  return $backlink ;
 }
 
 function deal_by_id(string $id) {
