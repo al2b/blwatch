@@ -1,11 +1,11 @@
 <?php
 require("lib/deals.php");
 
-$errors = check_backlink_error_from_request($_REQUEST) ;
 
 if (array_key_exists("backlink", $_REQUEST)) {
-  if (count($errors) == 0) {
-      $backlink = create_backlink_from_request($_REQUEST) ;
+  $backlink = create_backlink_from_request($_REQUEST) ;
+  $errors = check_backlink_error_from_request($backlink) ;
+    if (count($errors) == 0) {
        // récupèrer un Deal
        $deal = deal_by_id($_REQUEST['id']);
        // ajouter aux backlinks existants

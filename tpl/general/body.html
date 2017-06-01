@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+      <?php  include('tpl/general/header.php') ;?>
+</head>
+
+<body>
+
+    <div id="wrapper">
+        <?php include('tpl/general/menu.html') ; ?>
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1>
+                          <?php
+                          if (isset($h1)){
+                            echo $h1 ;
+                          } else {
+                            echo 'manque H1' ;
+                          }
+                          ;?>
+                        </h1>
+                          <p> <?php if (isset($texte)){
+                            echo $texte ;
+                          } else {
+                            echo 'manque contenu' ;
+                          }
+                          ;?>
+
+                        </p>
+                        <?php if (isset($form)){
+                          include $form ;
+                        } else {
+                          echo '' ;
+                        }
+                        ;?>
+      </div>
+                </div>
+            </div>
+        </div>
+<!-- /#page-content-wrapper -->
+    </div>
+</body>
+</html>

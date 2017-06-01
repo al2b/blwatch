@@ -7,7 +7,7 @@ const ERROR_LASTNAME = "lastname naze";
 const ERROR_FIRSTNAME = "firstname naze";
 const ERROR_URL_TARGET = "URL target naze" ;
 const ERROR_URL = "URL  naze" ;
-
+const FORM_IDENTITY = "tpl/deals/form.html" ;
 
 function deal_get_next_id() {
   $fp = fopen(DEAL_ID_FILENAME, "c+");
@@ -27,6 +27,9 @@ function deal_get_next_id() {
 
 function check_identity_error_from_request(array $request) {
   $errors = array() ;
+  $_REQUEST["identity"]["firstname"] = trim($_REQUEST["identity"]["firstname"], " ");
+  $_REQUEST["identity"]["lastname"] = trim($_REQUEST["identity"]["lastname"], " ");
+
   if (array_key_exists("identity", $_REQUEST)) {
     if (filter_var($_REQUEST["identity"]["email"], FILTER_VALIDATE_EMAIL) == false) {
          $errors["mail"] = ERROR_MAIL ;

@@ -1,5 +1,4 @@
-<?php
-require("lib/deals.php");?>
+<?php require("lib/deals.php");?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -15,16 +14,19 @@ require("lib/deals.php");?>
             <div class="row">
                 <div class="col-lg-12">
                   <H1>Maintenant, vous pouvez ajouter un backlink</h1>
-<?php if (array_key_exists("identity", $_REQUEST)) {
+<?php
 
-  $deal = create_deal_from_request($_REQUEST);
-  write_deal($deal);
-  echo "Votre contact a été enregistré. <a href='new_deal.php'>Souhaitez-vous créer un nouveau contact ?</a> <br>";
-
-  include('tpl/deals/form-new-backlink.html') ;
-} else {
-  header("location: /backlinkstool/new_deal.php") ;
-}?>
+if (filter_var($_REQUEST["identity"]["email"], FILTER_VALIDATE_EMAIL) !== false) {
+	if (array_key_exists("identity", $_REQUEST)) {
+		$deal = create_deal_from_request($_REQUEST);
+		write_deal($deal);
+		echo "Votre contact a été enregistré. <a href='new_deal.php'>Souhaitez-vous créer un nouveau contact ?</a> <br>";
+		include('tpl/deals/form-new-backlink.html') ;
+	} else {
+		header("location: /backlinkstool/new_deal.php") ;
+  }
+}
+?>
                 </div>
             </div>
       </div>
