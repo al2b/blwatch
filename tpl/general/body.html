@@ -22,7 +22,9 @@
                           }
                           ;?>
                         </h1>
-                          <p> <?php if (isset($texte)){
+
+                          <p>
+                            <?php if (isset($texte)){
                             echo $texte ;
                           } else {
                             echo 'manque contenu' ;
@@ -36,6 +38,15 @@
                           echo '' ;
                         }
                         ;?>
+
+                        <p>
+                          <?php if (isset($display_backlinks)){
+                            include $display_backlinks;
+                          } else {
+                            echo '';
+                          }
+                          ;?>
+                        </p>
       </div>
                 </div>
             </div>
