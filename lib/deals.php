@@ -8,6 +8,8 @@ const ERROR_FIRSTNAME = "firstname naze";
 const ERROR_URL_TARGET = "URL target naze" ;
 const ERROR_URL = "URL  naze" ;
 const FORM_IDENTITY = "tpl/deals/form.html" ;
+const FORM_NEW_BACKLINK = "tpl/deals/form-new-backlink.html" ;
+const DISPLAY_BACKLINKS = "tpl/deals/display-backlinks.html" ;
 
 function deal_get_next_id() {
   $fp = fopen(DEAL_ID_FILENAME, "c+");
@@ -158,5 +160,5 @@ function somme_deal($deal): float {
   foreach($deal["backlinks"] as $backlink) {
     $somme += $backlink["price"] ;
   }
-  return $somme ;
+  return $somme ;fa
 }
