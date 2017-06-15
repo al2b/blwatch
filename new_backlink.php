@@ -1,31 +1,34 @@
 <?php
-require("lib/deals.php");
+require("lib/deal.php");
+require("lib/seller.php");
+require("lib/backlink.php");
+require("lib/user.php");
 
+$id = $_REQUEST["id"];
+$deal = Deal::byId($id);
 
 if (array_key_exists("backlink", $_REQUEST)) {
-  $backlink = create_backlink_from_request($_REQUEST) ;
-  $errors = check_backlink_error_from_request($backlink) ;
-    if (count($errors) == 0) {
-       // récupèrer un Deal
-       $deal = deal_by_id($_REQUEST['id']);
-       // ajouter aux backlinks existants
-       deal_add_backlink($deal, $backlink) ;
-       // sauvegarder les modifs
-       write_deal($deal) ;
+
+    $target = ($_REQUEST["backlink"]["target"]) ;
+    $url =  ($_REQUEST["backlink"]["url"]) ;
+    $date =  ($_REQUEST["backlink"]["date"]) ;
+    $price = ($_REQUEST["backlink"]["price"]) ;
+    $backlink = new Backlink($target, $url, $date, $price) ;
+    $deal->addBacklink($backlink) ;
+    $deal->save() ;
+    $success = 'success!';
   } else {
-     foreach ($errors as $key => $error) {
-       echo $error ;
      }
-  }
-};
 
+     foreach($backlink as $key => $value) {
+         print "$key => $value\n";
+     }
 
-$identity["id"] = $_REQUEST["id"] ;
-$deal = deal_by_id($identity["id"]) ;
-
-$h1 = "Well done. Maintenant, ajoutez vos backlinks" ;
+$h1 = "Well done. Vous pouvez encore en ajouter plein" ;
 $texte = "Ce formulaire vous permet d'enregistrer un de vos contacts. Vous pourrez associer les infos sur les liens de votre choix juste après, ou bien plus tard.";
-$display_backlinks = DISPLAY_BACKLINKS;
-$form = FORM_NEW_BACKLINK;
-include('tpl/general/body.html') ;
+$form = 'form-new-backlink.html';
+$form2 = "tpl/deals/form-new-backlink.html";
+$texte_principal = "Voulez-vous ajouter des liens ?";
+
+include('tpl/general/body_backlink.html') ;
 ?>

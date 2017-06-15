@@ -4,7 +4,6 @@
 class Deal
 {
 
-
     const DEALS_FILE_ROOT = "data/deals/" ;
     const DEAL_ID_FILENAME = self::DEALS_FILE_ROOT."current_deal_id.txt" ;
 
@@ -17,7 +16,7 @@ class Deal
 
 
 
-public function __construct($seller, $backlink, $user, $comment, $id=null)
+public function __construct($seller, $backlink=null, $user, $comment=null, $id=null)
 {
     $this->seller = $seller ;
     $this->backlink = $backlink ;
@@ -87,79 +86,8 @@ public function listAllDeals()
   return glob(DEALS_FILE_ROOT."*.php_serialized") ;
 }
 
+public function addBacklink($backlink)
+{
+ $this->backlink = $backlink ;
 }
-
-
-class Seller {
-
-private $firstname ;
-private $lastname ;
-private $email ;
-
-  public function __construct($firstname, $lastname, $email)
-  {
-    $this->firstname = $firstname ;
-    $this->lastname = $lastname ;
-    $this->email = $email ;
-  }
 }
-
-
-class Backlink {
-
-  private $target;
-  private $url;
-  private $date;
-  private $price;
-  private $comment;
-  private $type;
-  private $anchor;
-
-  public function __construct($target, $url, $anchor, $date, $price, $comment){
-    $this->target = $target ;
-    $this->url = $url ;
-    $this->anchor = $anchor ;
-    $this->date = $date ;
-    $this->price = $price ;
-    $this->comment = $comment ;
-  }
-  public function displayTotalCostBacklinks($deal)
-  {
-    $total = 0 ;
-    foreach($this->price  as $price) {
-      $somme += $price ;
-    }
-    return $total ;
-  }
-}
-
-
-
-class User {
-
-  private $lastname;
-  private $firstname;
-  private $email;
-  private $login;
-  private $password;
-
-  public function __construct($name, $login, $email) {
-
-  }
-}
-
-
-// $user
-//
-// $Deal
-// $identity
-// $contact
-// $comment
-//
-// $Backlink
-// $url
-// $target
-// $price
-// $comment
-
-// URL / Target = ce sont deux urls nommées différemment, mais même caractéristiques. C'est donc un seul objet ? Fonction commune = vérifier le format (et peut être plus tard vérifier si renvoi code 200, par exemple)

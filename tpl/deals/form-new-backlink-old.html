@@ -1,8 +1,7 @@
 <form action="new_backlink.php" method="POST">
-  Vous pouvez ajouter de nouveaux backlinks pour le contact : <br>
+  Vous pouvez ajouter de nouveaux backlinks pour le contact : <?php echo $deal["identity"]["firstname"] . " " . $deal["identity"]["lastname"] ; ?> <br>
 
-  <input type="hidden" name="id" value="<?php echo $id;?>"
-
+  <input type="hidden" name="id" value="<?php echo $deal["id"];?>"
   <label for="date">date* : </label>
   <input type="date" name="backlink[date]" id="date" required>
   <br>
@@ -16,7 +15,7 @@
   <br>
 
   <label for="price">prix en € : </label>
-  <input type="number" step="0.1" name="backlink[price]" id="price" >
+  <input type="number" step="0.01" name="backlink[price]" id="price" >
   <br>
 
   <input type="submit">

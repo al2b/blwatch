@@ -9,7 +9,8 @@ class User
   private $login;
   private $password;
 
-  public function __construct($name, $login, $email) {
+  public function __construct($lastname, $firstname, $email, $login, $password)
+  {
 
   }
 }

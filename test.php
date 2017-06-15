@@ -1,33 +1,51 @@
 <?php
 
 require("lib/deal.php");
+require("lib/seller.php");
+require("lib/backlink.php");
+require("lib/user.php");
 
-require_once("blabla.php") ; > evite de charger 2 fois
+//require_once("blabla.php") ;
 
 $firstname = "Nicolas";
 $lastname = "Bidule";
 $email = "bidule@gmail.com";
 
+
 $seller = new Seller($firstname, $lastname, $email);
 
-$target = 'http://www.site.fr';
-$url = 'http://www.url.fr' ;
-$anchor = 'anchor' ;
-$date = "" ;
-$price = "3" ;
-$comment = "blabla" ;
-$backlink = new Backlink($target, $url, $anchor, $date, $price, $comment);
+$comment = 'blabla' ;
 
-$name = 'Jean' ;
-$login = 'jeanlogin' ;
-$email = 'jean@gmail.com' ;
-$user = new User($name, $login, $email);
+$firstname = "Nicolas";
+$lastname = "Bidule";
+$email = "bidule@gmail.com";
+$login = "blabl";
+$password = "blabla";
 
-$deal = new Deal($seller, $backlink, $user, $comment) ;
+$user = new User($firstname, $lastname, $email, $login, $password);
+
+$deal = new Deal($seller, $user, $comment) ;
 
 
 $deal->save() ;
-$id = $deal->getId() ;
-$deal = null;
-$deal = Deal::byId($id);
-print_r($deal) ;
+// $id = $deal->getId() ;
+// $deal = null;
+// $deal = Deal::byId($id);
+// print_r($deal) ;
+
+$target = 'test' ;
+$url = 'test' ;
+$date = 'test' ;
+$price = 'test' ;
+$comment = 'test' ;
+$type = 'test' ;
+$anchor = 'test' ;
+
+
+
+$backlink = new Backlink($target, $url, $anchor, $date, $type, $price, $comment) ;
+
+$deal->addBacklink($backlink) ;
+$deal->save() ;
+
+echo "$backlink->url";

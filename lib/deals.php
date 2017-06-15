@@ -160,5 +160,5 @@ function somme_deal($deal): float {
   foreach($deal["backlinks"] as $backlink) {
     $somme += $backlink["price"] ;
   }
-  return $somme ;fa
+  return $somme ;
 }

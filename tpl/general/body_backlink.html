@@ -16,7 +16,29 @@
                         <h1>
                           <?php echo (isset ($h1))? $h1 :"manque h1";?>
                         </h1>
+                        <p>
+        <table class="table table-striped table-hover ">
 
+              <thead>
+                <tr>
+                  <th>Target</th>
+                  <th>Url</th>
+                  <th>Price</th>
+                  <th>Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><?php echo $backlink->target; ?></td>
+                  <td><?php echo $backlink->url; ?></td>
+                  <td><?php echo $backlink->price; ?></td>
+                  <td><?php echo $backlink->date; ?></td>
+                </tr>
+
+
+              </tbody>
+            </table>
+                    </p>
                           <p>
                             <?php if (isset($texte)){
                             echo $texte ;
