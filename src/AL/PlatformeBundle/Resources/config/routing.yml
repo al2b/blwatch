@@ -1,0 +1,12 @@
+
+hello_test:
+    path:     test/{slug}
+    defaults: { _controller: ALPlatformeBundle:Deal:hello }
+
+display_deal:
+    path:     display/{id}
+    defaults: { _controller: ALPlatformeBundle:Deal:display }
+
+add_deal:
+    path:     add_deal
+    defaults: { _controller: ALPlatformeBundle:Deal:add }

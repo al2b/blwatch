@@ -1,0 +1,4 @@
+services:
+#    al_platforme.example:
+#        class: AL\PlatformeBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
