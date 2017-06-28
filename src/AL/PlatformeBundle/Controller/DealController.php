@@ -7,8 +7,10 @@ namespace AL\PlatformeBundle\Controller;
 use AL\PlatformeBundle\Entity\Deal;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class DealController extends Controller
 {
@@ -19,12 +21,12 @@ class DealController extends Controller
         $deal = new Deal();
 
         /** Je créé formbuilder **/
-        $formBuilder = $this->get('form.factory')->createBuilder('form', $deal);
+        $formBuilder = $this->createFormBuilder($deal);
 
         /** Je rajoute les champs **/
-        $formbuilder
-            ->add('username', 'text')
-            ->add('sellername', 'text')
+        $formBuilder
+            ->add('username', TextType::class)
+            ->add('sellername', TextType::class)
         ;
 
         /** On génère le formulaire **/
