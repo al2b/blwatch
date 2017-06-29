@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use AL\PlatformeBundle\Form\DealType;
 
 class DealController extends Controller
 {
@@ -20,19 +21,18 @@ class DealController extends Controller
         /** Je créé mon objet **/
         $deal = new Deal();
 
-        /** Je créé formbuilder **/
-        $formBuilder = $this->createFormBuilder($deal);
+        $form = $this->createForm(DealType::class, $deal);
 
-        /** Je rajoute les champs **/
-        $formBuilder
-            ->add('username', TextType::class)
-            ->add('sellername', TextType::class)
-        ;
 
-        /** On génère le formulaire **/
-        $form = $formBuilder->getForm();
+        $form->handleRequest($request);
 
-        /** Afficher le template **/
+        if ($form->isSubmitted() && $form->isValid()) {
+            $deal = $form->getData();
+            $em = $this->get('doctrine')->getManager();
+            $em->persist($deal);
+            $em->flush();
+            return $this->redirectToRoute('task_success');
+        }
         return $this->render('default/AddDeal.html.twig', array(
             'form' => $form->createView(),
         ));

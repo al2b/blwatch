@@ -2,6 +2,7 @@
 
 namespace AL\PlatformeBundle\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -25,6 +26,7 @@ class Deal
      * @var string
      *
      * @ORM\Column(name="username", type="string", length=255)
+     * @Assert\Length(min=2)
      */
     private $username;
 
@@ -32,6 +34,7 @@ class Deal
      * @var string
      *
      * @ORM\Column(name="sellername", type="string", length=255)
+     * @Assert\Length(min=2)
      */
     private $sellername;
 
@@ -39,6 +42,8 @@ class Deal
      * @var string
      *
      * @ORM\Column(name="url", type="string", length=255)
+     * @Assert\Length(max=255)
+     * @Assert\Url()
      */
     private $url;
 
@@ -46,6 +51,8 @@ class Deal
      * @var string
      *
      * @ORM\Column(name="target", type="string", length=255)
+     * @Assert\Length(max=255)
+     * @Assert\Url()
      */
     private $target;
 
@@ -187,4 +194,3 @@ class Deal
         return $this->price;
     }
 }
-
