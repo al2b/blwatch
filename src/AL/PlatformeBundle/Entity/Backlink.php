@@ -26,13 +26,14 @@ class Backlink
      * @var string
      *
      * @ORM\Column(name="target", type="string", length=255)
+     * @ORM\ManyToOne (targetEntity="Target", inversedBy="backlinks")
+     * @ORM\JoinColumn(name="target_id", referencedColumnName="id")
      */
     private $target;
 
     /**
      * @var string
      *
-     * @ORM\OneToOne (targetEntity="Target", mappedBy="target")
      * @ORM\Column(name="url", type="string", length=255)
      */
     private $url;
