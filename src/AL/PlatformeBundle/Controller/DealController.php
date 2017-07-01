@@ -31,10 +31,20 @@ class DealController extends Controller
             $em = $this->get('doctrine')->getManager();
             $em->persist($deal);
             $em->flush();
-            return $this->redirectToRoute('task_success');
+            return $this->redirectToRoute('deal_success', array('id' => $deal->getId()));
         }
         return $this->render('default/AddDeal.html.twig', array(
             'form' => $form->createView(),
+        ));
+    }
+
+    public function successAction($id)
+    {
+        $em = $this->get('doctrine')->getManager();
+        $repository = $em->getRepository('ALPlatformeBundle:Deal');
+        $deal = $repository->find($id);
+        return $this->render('default/display.html.twig', array(
+            'deal' => $deal,
         ));
     }
 

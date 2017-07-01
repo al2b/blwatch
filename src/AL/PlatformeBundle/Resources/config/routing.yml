@@ -10,3 +10,7 @@ display_deal:
 add_deal:
     path:     add_deal
     defaults: { _controller: ALPlatformeBundle:Deal:add }
+
+deal_success:
+    path:     deal_success{id}
+    defaults: { _controller: ALPlatformeBundle:Deal:success }
