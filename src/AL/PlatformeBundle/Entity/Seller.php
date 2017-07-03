@@ -56,6 +56,12 @@ class Seller
      */
     private $comment;
 
+    /**
+     * @var Collections
+     *
+     * @ORM\OneToMany (targetEntity="Backlink", mappedBy ="seller")
+     */
+    private $backlinks;
 
     /**
      * Get id
@@ -187,4 +193,3 @@ class Seller
         return $this->comment;
     }
 }
-

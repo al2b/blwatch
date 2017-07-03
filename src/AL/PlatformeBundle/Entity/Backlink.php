@@ -23,9 +23,8 @@ class Backlink
     private $id;
 
     /**
-     * @var string
+     * @var Target
      *
-     * @ORM\Column(name="target", type="string", length=255)
      * @ORM\ManyToOne (targetEntity="Target", inversedBy="backlinks")
      * @ORM\JoinColumn(name="target_id", referencedColumnName="id")
      */
@@ -45,6 +44,12 @@ class Backlink
      */
     private $anchor;
 
+    /**
+     * @var Seller
+     *
+     * @ORM\ManyToOne (targetEntity="Seller", inversedBy="backlinks")
+     */
+    private $seller;
 
     /**
      * Get id
@@ -102,5 +107,29 @@ class Backlink
     public function getAnchor()
     {
         return $this->anchor;
+    }
+
+    /**
+     * Set target
+     *
+     * @param string $target
+     *
+     * @return Backlink
+     */
+    public function setTarget($target)
+    {
+        $this->target = $target;
+
+        return $this;
+    }
+
+    /**
+     * Get target
+     *
+     * @return string
+     */
+    public function getTarget()
+    {
+        return $this->target;
     }
 }

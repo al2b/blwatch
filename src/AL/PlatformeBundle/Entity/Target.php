@@ -28,6 +28,12 @@ class Target
      */
     private $url;
 
+    /**
+     * @var Collections
+     *
+     * @ORM\OneToMany (targetEntity="Backlink", mappedBy="target")
+     */
+    private $backlinks;
 
     /**
      * Get id
@@ -63,4 +69,3 @@ class Target
         return $this->url;
     }
 }
-
