@@ -2,6 +2,7 @@
 
 namespace AL\PlatformeBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -62,6 +63,13 @@ class Seller
      * @ORM\OneToMany (targetEntity="Backlink", mappedBy ="seller")
      */
     private $backlinks;
+
+    /**
+     * @var Collections
+     *
+     * @ORM\OneToMany (targetEntity="Deal", mappedBy ="seller")
+     */
+    private $deals;
 
     /**
      * Get id

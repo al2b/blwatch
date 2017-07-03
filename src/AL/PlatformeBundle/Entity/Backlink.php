@@ -31,6 +31,13 @@ class Backlink
     private $target;
 
     /**
+     * @var Deal
+     *
+     * @ORM\ManyToOne (targetEntity="Deal", inversedBy="backlinks")
+     */
+    private $deal;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="url", type="string", length=255)

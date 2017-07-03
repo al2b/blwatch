@@ -3,6 +3,7 @@
 namespace AL\PlatformeBundle\Entity;
 
 use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -25,27 +26,24 @@ class Deal
     /**
      * @var string
      *
-     * @ORM\Column(name="username", type="string", length=255)
+     * @ORM\Column(name="user", type="string", length=255)
      * @Assert\Length(min=2)
      */
-    private $username;
+    private $user;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="sellername", type="string", length=255)
-     * @Assert\Length(min=2)
-     */
-    private $sellername;
+    * @var Collections
+    *
+    * @ORM\OneToMany (targetEntity="Seller", mappedBy ="deals")
+    */
+    private $seller;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="url", type="string", length=255, nullable=true)
-     * @Assert\Length(max=255)
-     * @Assert\Url()
-     */
-    private $url;
+    * @var Collections
+    *
+    * @ORM\OneToMany (targetEntity="Backlink", mappedBy ="deal")
+    */
+   private $backlink;
 
     /**
      * @var string
