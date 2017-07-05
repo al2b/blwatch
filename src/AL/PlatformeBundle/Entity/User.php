@@ -49,6 +49,12 @@ class User
      */
     private $email;
 
+    /**
+     * @var Collections
+     *
+     * @ORM\OneToMany (targetEntity="Deal", mappedBy ="seller")
+     */
+    private $deals;
 
     /**
      * Get id
@@ -154,5 +160,29 @@ class User
     public function getEmail()
     {
         return $this->email;
+    }
+
+    /**
+     * Set deals
+     *
+     * @param Collections $deals
+     *
+     * @return string
+     */
+    public function setDeals($deals)
+    {
+        $this->deals = new ArrayCollection();
+
+        return $this;
+    }
+
+    /**
+     * Get deals
+     *
+     * @return string
+     */
+    public function getDeals()
+    {
+        return $this->deals;
     }
 }

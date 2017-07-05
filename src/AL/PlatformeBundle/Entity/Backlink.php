@@ -7,7 +7,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Backlink
-
+ * Un backlink est une page (url) sur laquelle se situe une ancre et un lien ahref vers une Target.
+ * Chaque backlink a une target et plusieurs backlinks peuvent avoir la même target
  * @ORM\Table(name="backlink")
  * @ORM\Entity(repositoryClass="AL\PlatformeBundle\Repository\BacklinkRepository")
  */
@@ -33,7 +34,9 @@ class Backlink
     /**
      * @var Deal
      *
+     * Each backlink has one deal, but one deal can have many backlinks.
      * @ORM\ManyToOne (targetEntity="Deal", inversedBy="backlinks")
+     * @ORM\JoinColumn(name="deal_id", referencedColumnName="id")
      */
     private $deal;
 
@@ -55,6 +58,7 @@ class Backlink
      * @var Seller
      *
      * @ORM\ManyToOne (targetEntity="Seller", inversedBy="backlinks")
+     * @ORM\JoinColumn(name="seller_id", referencedColumnName="id")
      */
     private $seller;
 

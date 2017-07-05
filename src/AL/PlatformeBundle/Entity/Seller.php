@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Seller
- *
+ * Le seller est le vendeur d'un deal, c'est lui qui fera le backlink vers la target. Un seller peut avoir plusieurs deals
  * @ORM\Table(name="seller")
  * @ORM\Entity(repositoryClass="AL\PlatformeBundle\Repository\SellerRepository")
  */
@@ -199,5 +199,53 @@ class Seller
     public function getComment()
     {
         return $this->comment;
+    }
+
+    /**
+     * Set backlinks
+     *
+     * @param Collections $backlinks
+     *
+     * @return string
+     */
+    public function setBacklinks($backlinks)
+    {
+        $this->backlinks = new ArrayCollection();
+
+        return $this;
+    }
+
+    /**
+     * Get backlinks
+     *
+     * @return string
+     */
+    public function getBacklinks()
+    {
+        return $this->backlinks;
+    }
+
+    /**
+     * Set deals
+     *
+     * @param Collections $deals
+     *
+     * @return string
+     */
+    public function setDeals($deals)
+    {
+        $this->deals = new ArrayCollection();
+
+        return $this;
+    }
+
+    /**
+     * Get deals
+     *
+     * @return string
+     */
+    public function getDeals()
+    {
+        return $this->deals;
     }
 }

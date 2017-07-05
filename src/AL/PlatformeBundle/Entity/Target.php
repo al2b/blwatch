@@ -7,7 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Target
- *
+ * Une target est la page de destination du lien sur le backlink. Une target peut avoir plusieurs backlinks
  * @ORM\Table(name="target")
  * @ORM\Entity(repositoryClass="AL\PlatformeBundle\Repository\TargetRepository")
  */
@@ -35,6 +35,13 @@ class Target
      * @ORM\OneToMany (targetEntity="Backlink", mappedBy="target")
      */
     private $backlinks;
+
+    /**
+     * @var Collections
+     *
+     * @ORM\OneToMany (targetEntity="Deal", mappedBy ="target")
+     */
+    private $deals;
 
     /**
      * Get id
@@ -68,5 +75,56 @@ class Target
     public function getUrl()
     {
         return $this->url;
+    }
+    
+    /**
+     * Set backlinks
+     *
+     * @param Collections $backlinks
+     *
+     * @return string
+     */
+
+    public function setBacklinks($backlinks)
+    {
+        $this->backlinks = new ArrayCollection();
+
+        return $this;
+    }
+
+    /**
+     * Get backlinks
+     *
+     * @return string
+     */
+
+
+    public function getBacklinks()
+    {
+        return $this->backlinks;
+    }
+
+    /**
+     * Set deals
+     *
+     * @param Collections $deals
+     *
+     * @return string
+     */
+    public function setDeals($deals)
+    {
+        $this->deals = new ArrayCollection();
+
+        return $this;
+    }
+
+    /**
+     * Get deals
+     *
+     * @return string
+     */
+    public function getDeals()
+    {
+        return $this->deals;
     }
 }

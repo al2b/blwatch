@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Deal
- *
+ * Un deal est un accord passé entre un user et un seller. Il comporte un ou plusieurs liens, avec un prix ou non
  * @ORM\Table(name="deal")
  * @ORM\Entity(repositoryClass="AL\PlatformeBundle\Repository\DealRepository")
  */
@@ -24,33 +24,33 @@ class Deal
     private $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="user", type="string", length=255)
-     * @Assert\Length(min=2)
-     */
+    * @var User
+    *
+    * @ORM\ManyToOne(targetEntity="User", inversedBy="deals")
+    * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+    */
     private $user;
 
     /**
-    * @var Collections
+    * @var Seller
     *
-    * @ORM\OneToMany (targetEntity="Seller", mappedBy ="deals")
+    * @ORM\ManyToOne(targetEntity="Seller", inversedBy="deals")
+    * @ORM\JoinColumn(name="seller_id", referencedColumnName="id")
     */
     private $seller;
 
     /**
-    * @var Collections
-    *
-    * @ORM\OneToMany (targetEntity="Backlink", mappedBy ="deal")
-    */
-   private $backlink;
+     * @var Collections
+     *
+     * @ORM\OneToMany (targetEntity="Backlink", mappedBy ="deal")
+     */
+    private $backlinks;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="target", type="string", length=255)
-     * @Assert\Length(max=255)
-     * @Assert\Url()
+     * @ORM\ManyToOne (targetEntity="Target", inversedBy="deals")
+     * @ORM\JoinColumn(name="target_id", referencedColumnName="id")
      */
     private $target;
 
@@ -60,6 +60,7 @@ class Deal
      * @ORM\Column(name="price", type="decimal", precision=10, scale=3)
      */
     private $price;
+
 
 
     /**
@@ -73,51 +74,51 @@ class Deal
     }
 
     /**
-     * Set username
+     * Set user
      *
-     * @param string $username
+     * @param string $user
      *
      * @return Deal
      */
-    public function setUsername($username)
+    public function setUser($user)
     {
-        $this->username = $username;
+        $this->user = $user;
 
         return $this;
     }
 
     /**
-     * Get username
+     * Get user
      *
      * @return string
      */
-    public function getUsername()
+    public function getUser()
     {
-        return $this->username;
+        return $this->user;
     }
 
     /**
-     * Set sellername
+     * Set seller
      *
-     * @param string $sellername
+     * @param string $seller
      *
      * @return Deal
      */
-    public function setSellername($sellername)
+    public function setSeller($seller)
     {
-        $this->sellername = $sellername;
+        $this->seller = $seller;
 
         return $this;
     }
 
     /**
-     * Get sellername
+     * Get seller
      *
      * @return string
      */
-    public function getSellername()
+    public function getSeller()
     {
-        return $this->sellername;
+        return $this->seller;
     }
 
     /**
@@ -190,5 +191,29 @@ class Deal
     public function getPrice()
     {
         return $this->price;
+    }
+
+    /**
+     * Set backlinks
+     *
+     * @param Collections $backlinks
+     *
+     * @return Deal
+     */
+    public function setBacklinks($backlinks)
+    {
+        $this->backlinks = new ArrayCollection();
+
+        return $this;
+    }
+
+    /**
+     * Get backlinks
+     *
+     * @return string
+     */
+    public function getBacklinks()
+    {
+        return $this->backlinks;
     }
 }

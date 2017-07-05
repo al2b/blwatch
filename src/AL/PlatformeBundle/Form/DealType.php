@@ -11,10 +11,8 @@ class DealType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('sellername')
-            ->add('username')
-            ->add('url')
-            ->add('target')
+            ->add('seller')
+            ->add('user')
             ->add('price')
             ->add('save', SubmitType::class)
         ;
