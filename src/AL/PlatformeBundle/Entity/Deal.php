@@ -61,6 +61,12 @@ class Deal
      */
     private $price;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="date", type="string", length=255)
+     */
+    private $date;
 
 
     /**
@@ -121,29 +127,6 @@ class Deal
         return $this->seller;
     }
 
-    /**
-     * Set url
-     *
-     * @param string $url
-     *
-     * @return Deal
-     */
-    public function setUrl($url)
-    {
-        $this->url = $url;
-
-        return $this;
-    }
-
-    /**
-     * Get url
-     *
-     * @return string
-     */
-    public function getUrl()
-    {
-        return $this->url;
-    }
 
     /**
      * Set target

@@ -7,7 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Target
- * Une target est la page de destination du lien sur le backlink. Une target peut avoir plusieurs backlinks
+ * Une target est la page de destination du backlink. Une seule target peut avoir plusieurs backlinks
  * @ORM\Table(name="target")
  * @ORM\Entity(repositoryClass="AL\PlatformeBundle\Repository\TargetRepository")
  */
@@ -76,7 +76,7 @@ class Target
     {
         return $this->url;
     }
-    
+
     /**
      * Set backlinks
      *

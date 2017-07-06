@@ -143,4 +143,56 @@ class Backlink
     {
         return $this->target;
     }
+
+
+    /**
+     * Set seller
+     *
+     * @param string $seller
+     *
+     * @return Backlink
+     */
+    public function setSeller($seller)
+    {
+        $this->target = $seller;
+
+        return $this;
+    }
+
+    /**
+     * Get seller
+     *
+     * @return string
+     */
+
+    public function getSeller()
+    {
+        return $this->seller;
+    }
+
+    /**
+     * Set deal
+     *
+     * @param string $deal
+     *
+     * @return Backlink
+     */
+
+    public function setDeal($deal)
+    {
+        $this->deal = $deal;
+        return $this;
+    }
+
+  /**
+   * Get deal
+   *
+   * @return string
+   */
+
+    public function getDeal()
+    {
+        return $this->deal;
+    }
+
 }
