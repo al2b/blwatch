@@ -43,6 +43,12 @@ class Target
      */
     private $deals;
 
+    public function __construct()
+    {
+        $this->backlinks = new ArrayCollection();
+        $this->deals = new ArrayCollection();
+    }
+
     /**
      * Get id
      *
@@ -77,20 +83,11 @@ class Target
         return $this->url;
     }
 
-    /**
-     * Set backlinks
-     *
-     * @param Collections $backlinks
-     *
-     * @return string
-     */
-
-    public function setBacklinks($backlinks)
-    {
-        $this->backlinks = new ArrayCollection();
-
-        return $this;
-    }
+    public function setBacklinks(array $backlinks)
+        {
+            $this->backlinks = new ArrayCollection($backlinks);
+            return $this;
+        }
 
     /**
      * Get backlinks
@@ -98,33 +95,27 @@ class Target
      * @return string
      */
 
-
     public function getBacklinks()
-    {
-        return $this->backlinks;
-    }
+        {
+            return $this->backlinks;
+        }
 
-    /**
-     * Set deals
-     *
-     * @param Collections $deals
-     *
-     * @return string
-     */
-    public function setDeals($deals)
-    {
-        $this->deals = new ArrayCollection();
 
-        return $this;
-    }
+    public function setDeals(array $deals)
+        {
+            $this->deals = new ArrayCollection($deals);
+            return $this;
+        }
 
     /**
      * Get deals
      *
-     * @return string
+     * @return array
      */
+
     public function getDeals()
-    {
-        return $this->deals;
-    }
+        {
+            return $this->deals;
+        }
+
 }

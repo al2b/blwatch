@@ -71,6 +71,12 @@ class Seller
      */
     private $deals;
 
+    public function __construct()
+    {
+        $this->backlinks = new ArrayCollection();
+        $this->deals = new ArrayCollection();
+    }
+    
     /**
      * Get id
      *

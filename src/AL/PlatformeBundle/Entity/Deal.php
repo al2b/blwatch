@@ -68,6 +68,10 @@ class Deal
      */
     private $date;
 
+    public function __construct()
+    {
+        $this->backlinks = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -178,25 +182,32 @@ class Deal
 
     /**
      * Set backlinks
-     *
-     * @param Collections $backlinks
-     *
-     * @return Deal
      */
-    public function setBacklinks($backlinks)
-    {
-        $this->backlinks = new ArrayCollection();
 
-        return $this;
-    }
+    public function setBacklinks(array $backlinks)
+        {
+            $this->backlinks = new ArrayCollection($backlinks);
+            return $this;
+        }
 
     /**
      * Get backlinks
      *
      * @return string
      */
+
     public function getBacklinks()
-    {
-        return $this->backlinks;
+        {
+            return $this->backlinks;
+        }
+
+   /**
+     * Add backlinks to Deal
+     *
+     */
+
+    public function addBacklink(Backlink $backlink) {
+          $this->backlinks->add($backlink);
+          return $this;
     }
 }
