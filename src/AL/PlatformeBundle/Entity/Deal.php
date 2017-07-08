@@ -24,14 +24,6 @@ class Deal
     private $id;
 
     /**
-    * @var User
-    *
-    * @ORM\ManyToOne(targetEntity="User", inversedBy="deals")
-    * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
-    */
-    private $user;
-
-    /**
     * @var Seller
     *
     * @ORM\ManyToOne(targetEntity="Seller", inversedBy="deals")
@@ -42,17 +34,17 @@ class Deal
     /**
      * @var Collections
      *
-     * @ORM\OneToMany (targetEntity="Backlink", mappedBy ="deal")
+     * @ORM\OneToMany(targetEntity="Backlink", mappedBy ="deal")
      */
     private $backlinks;
 
-    /**
-     * @var string
-     *
-     * @ORM\ManyToOne (targetEntity="Target", inversedBy="deals")
-     * @ORM\JoinColumn(name="target_id", referencedColumnName="id")
-     */
-    private $target;
+    // /**
+    //  * @var string
+    //  *
+    //  * @ORM\ManyToOne(targetEntity="Target, inversedBy="deals")
+    //  * @ORM\JoinColumn(name="target_id", referencedColumnName="id")
+    //  */
+    // private $target;
 
     /**
      * @var string
@@ -81,30 +73,6 @@ class Deal
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set user
-     *
-     * @param string $user
-     *
-     * @return Deal
-     */
-    public function setUser($user)
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
-    /**
-     * Get user
-     *
-     * @return string
-     */
-    public function getUser()
-    {
-        return $this->user;
     }
 
     /**
@@ -161,7 +129,7 @@ class Deal
      *
      * @param string $price
      *
-     * @return Deal
+     * @return DealEntity
      */
     public function setPrice($price)
     {
@@ -206,7 +174,7 @@ class Deal
      *
      */
 
-    public function addBacklink(Backlink $backlink) {
+    public function addBacklink(BacklinkEntity $backlink) {
           $this->backlinks->add($backlink);
           return $this;
     }

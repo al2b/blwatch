@@ -58,25 +58,27 @@ class Seller
     private $comment;
 
     /**
-     * @var Collections
+     * @var ArrayCollection
      *
-     * @ORM\OneToMany (targetEntity="Backlink", mappedBy ="seller")
-     */
-    private $backlinks;
-
-    /**
-     * @var Collections
-     *
-     * @ORM\OneToMany (targetEntity="Deal", mappedBy ="seller")
+     * @ORM\OneToMany(targetEntity="Deal", mappedBy="seller")
      */
     private $deals;
+
+    /**
+     * @var User
+     *
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="sellers")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    private $user;
+
 
     public function __construct()
     {
         $this->backlinks = new ArrayCollection();
         $this->deals = new ArrayCollection();
     }
-    
+
     /**
      * Get id
      *

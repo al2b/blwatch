@@ -53,8 +53,7 @@ class DealController extends Controller
         $em = $this->get('doctrine')->getManager();
 
         $deal = new Deal();
-        $deal->setUsername('testnom');
-        $deal->setSellername('testnomvendeur');
+        $deal->setSeller('testnomvendeur');
         $deal->setUrl('www.test.fr');
         $deal->setTarget('www.target.fr');
         $deal->setPrice('4');

@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * Backlink
+ * BacklinkEntity
  * Un backlink est une page (url) sur laquelle se situe une ancre et un lien ahref vers une Target.
  * Chaque backlink a une target et plusieurs backlinks peuvent avoir la même target
  * @ORM\Table(name="backlink")
@@ -32,15 +32,6 @@ class Backlink
     private $target;
 
     /**
-     * @var Deal
-     *
-     * Each backlink has one deal, but one deal can have many backlinks.
-     * @ORM\ManyToOne (targetEntity="Deal", inversedBy="backlinks")
-     * @ORM\JoinColumn(name="deal_id", referencedColumnName="id")
-     */
-    private $deal;
-
-    /**
      * @var string
      *
      * @ORM\Column(name="url", type="string", length=255)
@@ -54,14 +45,14 @@ class Backlink
      */
     private $anchor;
 
-    /**
-     * @var Seller
-     *
-     * @ORM\ManyToOne (targetEntity="Seller", inversedBy="backlinks")
-     * @ORM\JoinColumn(name="seller_id", referencedColumnName="id")
-     */
-    private $seller;
 
+    /**
+     * @var Deal
+     *
+     * @ORM\ManyToOne (targetEntity="Deal", inversedBy="backlinks")
+     * @ORM\JoinColumn(name="deal_id", referencedColumnName="id")
+     */
+    private $deal;
 
 
     /**
@@ -79,7 +70,7 @@ class Backlink
      *
      * @param string $url
      *
-     * @return Backlink
+     * @return string
      */
     public function setUrl($url)
     {
@@ -125,7 +116,7 @@ class Backlink
     /**
      * Set target
      *
-     * @param string $target
+     * @param Target
      *
      * @return Backlink
      */
@@ -148,48 +139,21 @@ class Backlink
 
 
     /**
-     * Set seller
-     *
-     * @param string $seller
-     *
-     * @return Backlink
-     */
-    public function setSeller($seller)
-    {
-        $this->target = $seller;
-
-        return $this;
-    }
-
-    /**
      * Get seller
      *
-     * @return string
+     * @return Seller
      */
 
     public function getSeller()
     {
-        return $this->seller;
+        return $this->getDeal()->getSeller();
     }
 
-    /**
-     * Set deal
-     *
-     * @param string $deal
-     *
-     * @return Backlink
-     */
-
-    public function setDeal($deal)
-    {
-        $this->deal = $deal;
-        return $this;
-    }
 
   /**
    * Get deal
    *
-   * @return string
+   * @return Deal
    */
 
     public function getDeal()

@@ -52,9 +52,10 @@ class User
     /**
      * @var Collections
      *
-     * @ORM\OneToMany (targetEntity="Deal", mappedBy ="seller")
+     * @ORM\OneToMany (targetEntity="Seller", mappedBy ="seller")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
-    private $deals;
+    private $sellers;
 
     /**
      * Get id

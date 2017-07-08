@@ -30,18 +30,12 @@ class Target
     private $url;
 
     /**
-     * @var Collections
+     * @var ArrayCollection
      *
      * @ORM\OneToMany (targetEntity="Backlink", mappedBy="target")
      */
     private $backlinks;
 
-    /**
-     * @var Collections
-     *
-     * @ORM\OneToMany (targetEntity="Deal", mappedBy ="target")
-     */
-    private $deals;
 
     public function __construct()
     {

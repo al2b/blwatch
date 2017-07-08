@@ -12,7 +12,6 @@ class DealType extends AbstractType
     {
         $builder
             ->add('seller')
-            ->add('user')
             ->add('price')
             ->add('save', SubmitType::class)
         ;
