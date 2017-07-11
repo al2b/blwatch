@@ -14,20 +14,14 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 
-class BacklinkType extends AbstractType
+class UserType extends AbstractType
 {
     /**
      * {@inheritdoc}
      */
-
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-            ->add('url', TextType::class)
-            ->add('anchor', TextType::class)
-            ->add('target', TargetType::class)
-            ->add('save', SubmitType::class)
-        ;
+        $builder->add('name')->add('login')->add('password')->add('email');
     }
 
     /**
@@ -36,7 +30,7 @@ class BacklinkType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AL\PlatformeBundle\Entity\Backlink'
+            'data_class' => 'AL\PlatformeBundle\Entity\User'
         ));
     }
 
@@ -45,7 +39,7 @@ class BacklinkType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'al_platformebundle_backlink';
+        return 'al_platformebundle_user';
     }
 
 

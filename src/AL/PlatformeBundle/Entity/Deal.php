@@ -178,4 +178,28 @@ class Deal
           $this->backlinks->add($backlink);
           return $this;
     }
+
+    /**
+     * Set date
+     *
+     * @param string $date
+     *
+     * @return Deal
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return string
+     */
+    public function getdate()
+    {
+        return $this->date;
+    }
 }
