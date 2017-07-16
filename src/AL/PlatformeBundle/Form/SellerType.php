@@ -23,11 +23,11 @@ class SellerType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-        ->add('firstname')
-        ->add('lastname')
-        ->add('company')
-        ->add('email')
-        ->add('comment')
+        ->add('firstname', TextType::class)
+        ->add('lastname', TextType::class)
+        ->add('company', TextType::class)
+        ->add('email', TextType::class)
+        ->add('comment', TextType::class);
 
     }
 

@@ -13,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class DealType extends AbstractType
 {
@@ -22,8 +23,14 @@ class DealType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('seller', SellerType::class)
+            ->add('backlinks', CollectionType::class, array(
+  'entry_type'   => BacklinkType::class,
+  'allow_add'    => true,
+  'allow_delete' => true
+))
             ->add('price', TextType::class)
-            ->add('date', DateType::class)
+            ->add('date', TextType::class)
             ->add('save', SubmitType::class)
         ;
     }

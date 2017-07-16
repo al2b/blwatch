@@ -14,3 +14,7 @@ add_deal:
 deal_success:
     path:     deal_success{id}
     defaults: { _controller: ALPlatformeBundle:Deal:success }
+
+add_backlink:
+    path:     add-backlink
+    defaults: { _controller: ALPlatformeBundle:Deal:backlink }

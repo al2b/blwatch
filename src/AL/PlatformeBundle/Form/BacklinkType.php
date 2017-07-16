@@ -26,6 +26,7 @@ class BacklinkType extends AbstractType
             ->add('url', TextType::class)
             ->add('anchor', TextType::class)
             ->add('target', TargetType::class)
+            ->add('price', TextType::class)
             ->add('save', SubmitType::class)
         ;
     }

@@ -26,7 +26,7 @@ class Backlink
     /**
      * @var Target
      *
-     * @ORM\ManyToOne (targetEntity="Target", inversedBy="backlinks")
+     * @ORM\ManyToOne (targetEntity="Target", inversedBy="backlinks", cascade={"persist"})
      * @ORM\JoinColumn(name="target_id", referencedColumnName="id")
      */
     private $target;
@@ -45,6 +45,12 @@ class Backlink
      */
     private $anchor;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="price", type="decimal", precision=10, scale=3, nullable=true)
+     */
+    private $price;
 
     /**
      * @var Deal
@@ -161,4 +167,27 @@ class Backlink
         return $this->deal;
     }
 
+    /**
+     * Set price
+     *
+     * @param string $price
+     *
+     * @return BacklinkEntity
+     */
+    public function setPrice($price)
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    /**
+     * Get price
+     *
+     * @return string
+     */
+    public function getPrice()
+    {
+        return $this->price;
+    }
 }

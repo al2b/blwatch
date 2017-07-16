@@ -26,7 +26,7 @@ class Deal
     /**
     * @var Seller
     *
-    * @ORM\ManyToOne(targetEntity="Seller", inversedBy="deals")
+    * @ORM\ManyToOne(targetEntity="Seller", inversedBy="deals", cascade={"persist"})
     * @ORM\JoinColumn(name="seller_id", referencedColumnName="id")
     */
     private $seller;
@@ -92,7 +92,7 @@ class Deal
     /**
      * Get seller
      *
-     * @return string
+     * @return Seller
      */
     public function getSeller()
     {

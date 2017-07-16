@@ -17,18 +17,14 @@ use Symfony\Component\HttpFoundation\Request;
 class TargetType extends AbstractType
 {
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
-        $builder
-        ->add('url', TextType::class);
-    }
 
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('url');
+        $builder
+        ->add('url', TextType::class);
     }
 
     /**
