@@ -16,5 +16,7 @@ deal_success:
     defaults: { _controller: ALPlatformeBundle:Deal:success }
 
 add_backlink:
-    path:     add-backlink
-    defaults: { _controller: ALPlatformeBundle:Deal:backlink }
+    path:     add-backlink{id}
+    defaults: { _controller: ALPlatformeBundle:Deal:backlink, id: null }
+    requirements:
+        page: '\d+'

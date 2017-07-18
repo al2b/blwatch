@@ -155,6 +155,19 @@ class Backlink
         return $this->getDeal()->getSeller();
     }
 
+    /**
+     * Set deal
+     *
+     * @param Deal
+     *
+     * @return Backlink
+     */
+    public function setDeal($deal)
+    {
+        $this->deal = $deal;
+
+        return $this;
+    }
 
   /**
    * Get deal

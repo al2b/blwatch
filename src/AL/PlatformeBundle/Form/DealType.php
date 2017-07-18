@@ -24,11 +24,6 @@ class DealType extends AbstractType
     {
         $builder
             ->add('seller', SellerType::class)
-            ->add('backlinks', CollectionType::class, array(
-  'entry_type'   => BacklinkType::class,
-  'allow_add'    => true,
-  'allow_delete' => true
-))
             ->add('price', TextType::class)
             ->add('date', TextType::class)
             ->add('save', SubmitType::class)
@@ -50,7 +45,7 @@ class DealType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'al_platformebundle_deal';
+        return 'deal';
     }
 
 

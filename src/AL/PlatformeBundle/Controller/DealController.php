@@ -22,7 +22,7 @@ class DealController extends Controller
     public function addAction(Request $request)
     {
 
-        /** Je créé mon objet **/
+        /** Dans ce controller, on créé nouvel objet deal : première étape avec seller, prix, date **/
         $deal = new Deal();
         $form = $this->createForm(DealType::class, $deal);
         $form->handleRequest($request);
@@ -31,30 +31,24 @@ class DealController extends Controller
             $em = $this->get('doctrine')->getManager();
             $em->persist($deal);
             $em->flush();
-            return $this->redirectToRoute('deal_success', array('id' => $deal->getId()));
+            return $this->redirectToRoute('add_backlink', array('id' => $deal->getId()));
         }
         return $this->render('default/AddDeal.html.twig', array(
             'form' => $form->createView(),
         ));
     }
 
-
-    public function successAction($id)
+    public function backlinkAction($id, Request $request)
     {
+        /** On créé nouvel objet backlink rattaché au deal **/
+
         $em = $this->get('doctrine')->getManager();
         $repository = $em->getRepository('ALPlatformeBundle:Deal');
+
         $deal = $repository->find($id);
-        $seller = $deal->getSeller();
 
-        return $this->render('default/success-deal.html.twig', array(
-            'deal' => $deal,
-            'seller' => $seller,
-        ));
-    }
-
-    public function backlinkAction(Request $request)
-    {
         $backlink = new Backlink();
+        $backlink->setDeal($deal);
 
         $form = $this->createForm(BacklinkType::class, $backlink);
 
@@ -65,10 +59,24 @@ class DealController extends Controller
             $em = $this->get('doctrine')->getManager();
             $em->persist($backlink);
             $em->flush();
-            return $this->redirectToRoute('deal_success', array('id' => $backlink->getId()));
+            return $this->redirectToRoute('deal_success', array('id' => $deal->getId()));
         }
         return $this->render('default/Backlink.html.twig', array(
             'form' => $form->createView(),
+        ));
+    }
+
+    public function successAction($id)
+    {
+        /** Ici on affiche le deal et le backlink, on récupère l'id du deal **/
+
+        $em = $this->get('doctrine')->getManager();
+        $repository = $em->getRepository('ALPlatformeBundle:Deal');
+        $deal = $repository->find($id);
+        $seller = $deal->getSeller();
+        return $this->render('default/success-deal.html.twig', array(
+            'deal' => $deal,
+            'seller' => $seller,
         ));
     }
 
