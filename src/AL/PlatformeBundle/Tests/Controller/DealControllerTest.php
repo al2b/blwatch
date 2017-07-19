@@ -23,6 +23,5 @@ class DefaultControllerTest extends WebTestCase
         ));
         $client->submit($form);
     $this->assertEquals('AL\PlatformeBundle\Controller\DealController::backlinkAction', $client->getRequest()->attributes->get('_controller'));
-}
     }
 }
