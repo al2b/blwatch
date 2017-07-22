@@ -19,18 +19,32 @@ class DealTypeTest extends TypeTestCase
     public function testSubmitValidData()
     {
         $formData = array(
-            'deal[seller][firstname]' => 'Bidule',
-            'deal[seller][lastname]'  => 'Truc',
-            'deal[seller][company]'  => 'Company',
-            'deal[seller][email]'  => 'Company@mail.fr',
-            'deal[comment]'  => 'commentaire malin',
-            'deal[price]'  => '6',
-            'deal[date]'  => '10/09/1986',
+        //    'deal' => array(
+                'seller' => array(
+                    'firstname' => 'Bidule',
+                    'lastname' => 'Truc',
+                    'company' => 'blabla',
+                    'email' => 'Company@mail.fr',
+                    'comment' => 'comment',
+                ),
+                'price' => '5',
+                'date' => '40',
+        //    )
         );
 
         $form = $this->factory->create(DealType::class);
+        $deal = new Deal;
+        $seller = new Seller;
+        $seller->setFirstname('Bidule');
+        $seller->setLastname('Truc');
+        $seller->setCompany('blabla');
+        $seller->setEmail('Company@mail.fr');
+        $seller->setComment('comment');
+        $deal->setSeller($seller);
+        $deal->setPrice('5');
+        $deal->setDate('40');
 
-        $deal = TestDeal::fromArray($formData);
+        // $deal = Deal::fromArray($formData);
 
         // submit the data to the form directly
         $form->submit($formData);
